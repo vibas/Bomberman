@@ -376,7 +376,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b041ac6634f94aa48abd642c36d41c38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _homeScreen: {fileID: 0}
   _resultScreen: {fileID: 946285025}
 --- !u!1 &767259537
 GameObject:
@@ -1648,7 +1647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3ccbdc17ab2e141a47493d25f692b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  totalEnemyCount: 1
+  totalEnemyCount: 5
   enemyPrefab: {fileID: 5879614341149993150, guid: 3cc733d3ea3e1764b8a9e6f0128eed28, type: 3}
   grid: {fileID: 1210743931}
 --- !u!1 &1594877514
