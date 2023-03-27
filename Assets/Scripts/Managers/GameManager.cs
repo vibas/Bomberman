@@ -7,20 +7,21 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Events.OnPlayerDeathEvent += CheckWinState;
+        Events.OnPlayerDeathSequenceCompleteEvent += CheckWinState;
         Events.OnAllEnemiesClearedEvent += CheckWinState;
+        Events.OnGameResetRequestedEvent += ResetRound;
     }
 
     private void OnDisable()
     {
-        Events.OnPlayerDeathEvent -= CheckWinState;
+        Events.OnPlayerDeathSequenceCompleteEvent -= CheckWinState;
         Events.OnAllEnemiesClearedEvent -= CheckWinState;
+        Events.OnGameResetRequestedEvent -= ResetRound;
     }
 
-    public void Start()
+    private void Start()
     {
         NewRound();
-        Events.OnGameStartedEvent?.Invoke();
     }
 
     public void CheckWinState()
@@ -34,17 +35,16 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (aliveCount <= 1) 
+        if (aliveCount < 1) 
         {
-            Invoke(nameof(ResetRound), 3f);
+            Events.OnGameOverEvent?.Invoke(false);
         }
         else
         {
             // Check if all enemies are dead
             if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0)
             {
-                Debug.LogError("ALL ENEMIES CLEARED");
-                Invoke(nameof(ResetRound), 3f);
+                Events.OnGameOverEvent?.Invoke(true);
             }
         }
     }

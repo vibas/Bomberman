@@ -6,21 +6,19 @@ public class Enemy : MonoBehaviour
 
     private void OnEnable()
     {
-        Events.OnGameStartedEvent += Activate;
         Events.OnEnemyDeathEvent += DeathSequence;
     }
 
     private void OnDisable()
     {
-        Events.OnGameStartedEvent -= Activate;
         Events.OnEnemyDeathEvent -= DeathSequence;
     }
 
-    public void Activate()
+    private void Start()
     {
         SetRandomMovementDirection();
     }
-
+    
     public void SetRandomMovementDirection()
     {
         // set CurrentMovementDir a random value
@@ -49,7 +47,8 @@ public class Enemy : MonoBehaviour
             return;
         }
         enabled = false;
-        Invoke(nameof(OnDeathSequenceEnded), 1.25f);
+        Direction = Vector2.zero;
+        Invoke(nameof(OnDeathSequenceEnded), 0.5f);
     }
 
     private void OnDeathSequenceEnded()

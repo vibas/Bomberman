@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Events
 {
-    public static Action OnGameStartedEvent;
-
     public static Action OnNewRoundRequestedEvent;
     public static Action<Dictionary<Vector3Int,bool>> OnNewLevelGeneratedEvent;
 
@@ -17,4 +15,7 @@ public class Events
     public static Action OnAllEnemiesClearedEvent;
     public static Action<GameObject,GameObject> OnEnemyFoundBlockerAheadEvent;
     public static Action<GameObject> OnEnemyFoundNoBlockerAheadEvent;
+
+    public static Action<bool> OnGameOverEvent;
+    public static Action OnGameResetRequestedEvent;
 }
